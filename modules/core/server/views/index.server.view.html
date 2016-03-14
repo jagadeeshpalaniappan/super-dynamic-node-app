@@ -1,0 +1,57 @@
+{% extends 'layout.server.view.html' %}
+
+{% block content %}
+  <section ng-controller="HomeController" >
+
+
+    <div ng-if="!authentication.user" ui-view>
+    </div>
+
+
+    <div ng-if="authentication.user">
+
+      <!-- Site wrapper -->
+      <div class="wrapper"  >
+
+        <div window-resize-trigger="fixMyAppWidthHeight"></div>
+
+        <header ng-include="'/modules/core/client/views/header.client.view.html'" class="main-header"></header>
+
+        <!-- =============================================== -->
+
+        <!-- Left side column. contains the sidebar -->
+        <aside ng-include="'/modules/core/client/views/aside.client.view.html'" class="main-sidebar" ></aside>
+
+        <!-- =============================================== -->
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper" ng-style="{'min-height': appMinHeight}" ui-view>
+
+        </div>
+
+
+
+        <footer ng-include="'/modules/core/client/views/footer.client.view.html'" class="main-footer"></footer>
+
+        <!-- Control Sidebar -->
+        <!--
+        <aside ng-include="'/modules/core/client/views/aside1.client.view.html'" class="control-sidebar control-sidebar-dark"></aside>
+        -->
+
+
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+      </div>
+      <!-- ./wrapper -->
+
+
+
+    </div>
+
+
+
+
+  </section>
+{% endblock %}

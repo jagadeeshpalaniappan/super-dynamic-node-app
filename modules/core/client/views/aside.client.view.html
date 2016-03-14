@@ -1,0 +1,113 @@
+<!-- sidebar: style can be found in sidebar.less -->
+<section class="sidebar" ng-controller="HeaderController">
+  <!-- Sidebar user panel -->
+  <div class="user-panel">
+    <div class="pull-left image">
+      <img ng-src="{{authentication.user.profileImageURL}}" class="img-circle" alt="User Image">
+    </div>
+    <div class="pull-left info">
+      <p ng-bind="authentication.user.displayName"></p>
+      <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+    </div>
+  </div>
+
+
+  <!-- search form -->
+  <form action="#" method="get" class="sidebar-form">
+    <div class="input-group">
+      <input type="text" name="q" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+              </button>
+            </span>
+    </div>
+  </form>
+  <!-- /.search form -->
+
+  <ul class="sidebar-menu">
+    <li ng-class="{active: $state.includes('home')}">
+      <a ui-sref="home">
+        <i class="fa fa-home"></i> <span>Home</span> </i>
+      </a>
+    </li>
+  </ul>
+
+
+  <ul class="sidebar-menu"><li class="header">Menu</li></ul>
+
+  <p></p>
+
+  <ul class="sidebar-menu">
+
+
+    <li ng-repeat="item in menu.items" ng-switch="item.type" ng-class="{active: $state.includes(item.state)}" ng-if="item.shouldRender(authentication.user)">
+
+      <a href ng-switch-when="dropdown" ng-click="toggleChild(item)">
+        <i ng-class="item.class? item.class : 'fa fa-folder'"></i>
+        <span>{{item.title}}</span>
+        <i class="pull-right" ng-class="{ 'fa fa-angle-left': item.expanded, 'fa fa-angle-down': !item.expanded }"></i>
+      </a>
+
+      <ul ng-switch-when="dropdown" class="treeview-menu menu-open" ng-style="item.expanded && {'display':'block'}">
+        <li ng-repeat="smenu in item.items" ng-show="item.expanded" ng-class="{active: $state.includes(smenu.state)}" ng-if="item.shouldRender(authentication.user)">
+          <a href ui-sref="{{smenu.state}}">
+            <i ng-class="smenu.class? smenu.class : 'fa fa-circle-o'"></i>
+            <span>{{smenu.title}}</span>
+          </a>
+        </li>
+      </ul>
+
+      <a ng-switch-default ui-sref="{{item.state}}" ng-class="{active: $state.includes(item.state)}">
+        <i ng-class="item.class? item.class : 'fa fa-folder'"></i>
+        <span>{{item.title}}</span>
+      </a>
+     </li>
+
+
+    </ul>
+
+
+
+  <!-- Working Menu -->
+<!--
+
+  <ul class="sidebar-menu"><li class="header">Menus</li></ul>
+
+  <ul class="sidebar-menu">
+
+
+    <li ng-repeat="menu in myMenus" ng-switch="menu.submenu? true : false" ng-class="{active: $state.includes(menu.state)}">
+
+      <a href ng-switch-when="true" ng-click="toggleChild(menu)">
+        <i ng-class="menu.iconClass? menu.iconClass : 'fa fa-folder'"></i>
+        <span>{{menu.title}}</span>
+        <i class="pull-right" ng-class="{ 'fa fa-angle-left': menu.expanded, 'fa fa-angle-down': !menu.expanded }"></i>
+      </a>
+
+      <ul ng-switch-when="true" class="treeview-menu menu-open" ng-style="menu.expanded && {'display':'block'}">
+        <li ng-repeat="smenu in menu.submenu" ng-show="menu.expanded" ng-class="{active: $state.includes(smenu.state)}">
+          <a href ui-sref="{{smenu.state}}">
+            <i ng-class="smenu.iconClass? smenu.iconClass : 'fa fa-circle-o'"></i>
+            <span>{{smenu.title}}</span>
+          </a>
+        </li>
+      </ul>
+
+      <a ng-switch-default ui-sref="{{menu.state}}" ng-class="{active: $state.includes(menu.state)}">
+        <i ng-class="menu.iconClass? menu.iconClass : 'fa fa-folder'"></i>
+        <span>{{menu.title}}</span>
+      </a>
+     </li>
+
+
+    </ul>
+
+  -->
+
+
+  <j-sidebar-menu menu-items="sideBarMenus">
+  </j-sidebar-menu>
+
+
+</section>
+<!-- /.sidebar -->

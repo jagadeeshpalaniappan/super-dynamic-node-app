@@ -1,0 +1,39 @@
+
+<ul class="sidebar-menu" >
+
+    <li ng-if="0" ng-repeat-start="item in menuItems"></li>
+
+    <li class="header" ng-if="(item.type=='header')">{{item.title}}</li>
+
+    <li ng-if="!(item.type=='header')" ng-switch="item.hasSubmenu" ng-class="{'treeview': !item.hasSubmenu, 'active':item.state == currentState}" >
+
+
+        <a ng-switch-when="false" ui-sref="{{item.state}}" ng-click="selectMenu(item.state)">
+            <i ng-class="item.iconClass"></i>
+            <span>{{item.title}}</span>
+            <small class="badge pull-right" ng-class="item.badgeClass" ng-show="item.hasBadge">{{item.badge}}</small>
+        </a>
+
+
+        <a ng-switch-when="true" ng-click="item.expanded = !item.expanded; selectMenu(item.state)">
+            <i ng-class="item.iconClass"></i>
+            <span>{{item.title}}</span>
+            <i class="pull-right fa" ng-class="{ 'fa-angle-left': item.expanded, 'fa-angle-down': !item.expanded }"></i>
+
+        </a>
+
+        <ul ng-switch-when="true" ng-class="{'menu-open': item.expanded}" ng-style="item.expanded && {'display':'block'}" class="treeview-menu" ng-show="item.expanded">
+            <li ng-repeat="subitem in item.submenu" ng-class="{'active':subitem.state == currentSubState}">
+                <a ui-sref="{{subitem.state}}" ng-click="selectSubMenu(subitem.state)">
+                  <i ng-class="subitem.iconClass" ng-if="subitem.iconClass"></i>
+                  <i class="fa fa-circle-o" ng-if="!subitem.iconClass"></i>
+                  {{subitem.title}}
+                </a>
+            </li>
+        </ul>
+
+    </li>
+
+    <li ng-if="0" ng-repeat-end></li>
+
+</ul>

@@ -1,0 +1,112 @@
+
+<div ng-controller="AuthenticationController">
+
+
+  <div class="register-box">
+    <div class="register-logo">
+      <a href="../../index2.html"><b>Im</b>COOL</a>
+    </div>
+
+    <div class="register-box-body">
+      <p class="login-box-msg">Register a new user account</p>
+
+      <form name="userForm" ng-submit="signup(userForm.$valid)" class="signin" novalidate autocomplete="off">
+
+        <div ng-show="error" class="text-center text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+
+        <div class="form-group has-feedback" show-errors>
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="credentials.firstName" placeholder="First Name" required>
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+          <div ng-messages="userForm.firstName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">First name is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group has-feedback" show-errors>
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="credentials.lastName" placeholder="Last Name" required>
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          <div ng-messages="userForm.lastName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Last name is required.</p>
+          </div>
+        </div>
+
+
+        <div class="form-group has-feedback" show-errors>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" ng-model="credentials.email" placeholder="Email" lowercase required>
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+
+          <div ng-messages="userForm.email.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Email address is required.</p>
+            <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
+          </div>
+        </div>
+
+        <div class="form-group has-feedback" show-errors>
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" class="form-control" ng-model="credentials.username" placeholder="Username" lowercase required>
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          <div ng-messages="userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Username is required.</p>
+          </div>
+        </div>
+
+
+        <div class="form-group has-feedback" show-errors>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control" ng-model="credentials.password" placeholder="Password" uib-popover="{{popoverMsg}}" uib-popover-trigger="focus" password-validator required>
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+
+          <div ng-messages="userForm.password.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Password is required.</p>
+            <div ng-repeat="passwordError in passwordErrors">
+              <p class="help-block error-text" ng-show="userForm.password.$error.requirements">{{passwordError}}</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group" ng-show="!userForm.password.$error.required">
+          <label>Password Requirements</label>
+          <uib-progressbar value="requirementsProgress" type="{{requirementsColor}}"><span style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></uib-progressbar>
+        </div>
+
+
+        <input type="checkbox"> I agree to the <a href="#">terms</a>
+
+
+        <div class="row">
+
+
+          <!-- /.col -->
+          <div class="col-xs-4 col-xs-offset-8">
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+
+<!--
+      <div class="social-auth-links text-center">
+        <p>- OR -</p>
+        <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
+          Facebook</a>
+        <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
+          Google+</a>
+      </div>
+-->
+
+
+      <a href ui-sref="authentication.signin" class="text-center">I already have a account</a>
+    </div>
+    <!-- /.form-box -->
+  </div>
+  <!-- /.register-box -->
+
+</div>

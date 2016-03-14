@@ -1,0 +1,97 @@
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+
+  <h1>
+    {{vm.article._id ? 'Edit Article' : 'Create New Article'}}
+
+    <small>it all starts here</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+    <li><a ui-sref="articles.list">Articles</a></li>
+    <li class="active">{{vm.article._id ? 'Edit Article' : 'New Article'}}</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+
+
+  <div data-ng-show="vm.article._id && vm.authentication.user._id !== vm.article.user._id">
+
+    <div class="callout callout-danger margin">
+      <h4><i class="icon fa fa-ban"></i> You are not Authorized!!</h4>
+
+      <p>Sorry!! You are not authorized to edit 'Article' created by others.</p>
+    </div>
+
+  </div>
+
+
+  <!-- Horizontal Form -->
+  <div class="box box-primary" data-ng-hide="vm.article._id && vm.authentication.user._id !== vm.article.user._id">
+    <div class="box-header with-border">
+      <h3 class="box-title">{{vm.article._id ? 'Edit Article' : 'Create New Article'}}</h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form class="form-horizontal" name="vm.form.articleForm" ng-submit="vm.save(vm.form.articleForm.$valid)" novalidate>
+
+
+
+      <div class="box-body">
+
+
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+
+
+
+        <div class="form-group">
+          <label for="title" class="col-sm-2 control-label">Title</label>
+
+          <div class="col-sm-10">
+            <input type="text" name="title" ng-model="vm.article.title" id="title" class="form-control" placeholder="Title" required>
+            <div ng-messages="vm.form.articleForm.title.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Article title is required.</p>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="content">Content</label>
+          <div class="col-sm-10">
+            <textarea name="content" data-ng-model="vm.article.content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <div class="pull-right">
+          <a ui-sref="articles.list" class="btn btn-default">Cancel</a>
+        <button type="submit" class="btn btn-primary">{{vm.article._id ? 'Update' : 'Create'}}</button>
+
+        </div>
+      </div>
+      <!-- /.box-footer -->
+    </form>
+  </div>
+  <!-- /.box -->
+
+
+</section>
+<!-- /.content -->
+

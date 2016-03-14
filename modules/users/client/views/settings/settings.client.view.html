@@ -1,0 +1,42 @@
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Settings
+
+    <small>it all starts here</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+    <li class="active">Settings</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content" ng-controller="SettingsController">
+
+  <div class="row">
+    <nav class="col-sm-3 col-md-3">
+      <ul class="nav nav-pills nav-stacked">
+        <li ui-sref-active="active">
+          <a ui-sref="settings.profile">Edit Profile</a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="settings.picture">Change Profile Picture</a>
+        </li>
+        <li ui-sref-active="active" ng-show="user.provider === 'local'">
+          <a ui-sref="settings.password">Change Password</a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="settings.accounts">Manage Social Accounts</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="col-sm-9 col-md-8 settings-view">
+      <div ui-view></div>
+    </div>
+  </div>
+
+
+</section>
+
