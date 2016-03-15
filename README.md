@@ -1,5 +1,5 @@
 # super-dynamic-node-app
-Super Dynamic Node App
+Super Dynamic Node App -MEAN Stack
 
 
 ## One Click Cloud Deploy
