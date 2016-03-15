@@ -7,4 +7,4 @@ Super Dynamic Node App -MEAN Stack
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/jagadeeshthegeek/super-dynamic-node-app)
 
 
-<a href="http://example.com/" target="_blank">Hello, world!</a>
+<a href="https://bluemix.net/deploy?repository=https://github.com/jagadeeshthegeek/super-dynamic-node-app" target="_blank"><img src="https://bluemix.net/deploy/button.png"</img></a>
