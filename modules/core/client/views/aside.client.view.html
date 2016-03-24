@@ -35,8 +35,6 @@
 
   <ul class="sidebar-menu"><li class="header">Menu</li></ul>
 
-  <p></p>
-
   <ul class="sidebar-menu">
 
 
@@ -66,47 +64,52 @@
 
     </ul>
 
-
-
-  <!-- Working Menu -->
 <!--
 
-  <ul class="sidebar-menu"><li class="header">Menus</li></ul>
 
   <ul class="sidebar-menu">
 
 
-    <li ng-repeat="menu in myMenus" ng-switch="menu.submenu? true : false" ng-class="{active: $state.includes(menu.state)}">
-
-      <a href ng-switch-when="true" ng-click="toggleChild(menu)">
-        <i ng-class="menu.iconClass? menu.iconClass : 'fa fa-folder'"></i>
-        <span>{{menu.title}}</span>
-        <i class="pull-right" ng-class="{ 'fa fa-angle-left': menu.expanded, 'fa fa-angle-down': !menu.expanded }"></i>
+    <li ng-class="{active: $state.includes('dynamicform')}">
+      <a ui-sref="dynamicform.build">
+        <i class="fa fa-home"></i> <span>dynamicform-build</span> </i>
       </a>
+    </li>
 
-      <ul ng-switch-when="true" class="treeview-menu menu-open" ng-style="menu.expanded && {'display':'block'}">
-        <li ng-repeat="smenu in menu.submenu" ng-show="menu.expanded" ng-class="{active: $state.includes(smenu.state)}">
-          <a href ui-sref="{{smenu.state}}">
-            <i ng-class="smenu.iconClass? smenu.iconClass : 'fa fa-circle-o'"></i>
-            <span>{{smenu.title}}</span>
-          </a>
-        </li>
-      </ul>
 
-      <a ng-switch-default ui-sref="{{menu.state}}" ng-class="{active: $state.includes(menu.state)}">
-        <i ng-class="menu.iconClass? menu.iconClass : 'fa fa-folder'"></i>
-        <span>{{menu.title}}</span>
+    <li ng-class="{active: $state.includes('dynamicform')}">
+      <a ui-sref="dynamicform.load">
+        <i class="fa fa-home"></i> <span>dynamicform-load</span> </i>
       </a>
-     </li>
+    </li>
+  </ul>
+
+-->
 
 
-    </ul>
 
-  -->
+  <ul class="sidebar-menu">
+    <li class="header">
+      Dynamic Modules
+      <span ng-click="$state.go('dynamicmodule.create')" ng-class="{'text-primary': $state.includes('dynamicmodule')}" class="pull-right"  style="cursor: pointer" title="New Dynamic Module"><i class="fa fa-plus-circle"></i> </span>
+    </li>
 
 
-  <j-sidebar-menu menu-items="sideBarMenus">
-  </j-sidebar-menu>
+
+<!--
+    <li ng-class="{active: $state.includes('dynamicform')}">
+      <a ui-sref="dynamicmodule.create">
+        <i class="fa fa-home"></i> <span>Dynamic Modules</span> </i>
+      </a>
+    </li>
+    -->
+
+  </ul>
+
+
+
+
+
 
 
 </section>

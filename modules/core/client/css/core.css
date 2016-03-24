@@ -35,3 +35,13 @@ a:hover .header-profile-image {
 .has-error .help-inline.error-text {
   display: inline;
 }
+
+
+
+.curly-braces {
+  font-size: 272px;
+  font-weight: 100;
+  color: #D2D1D1;
+  opacity: 0.5;
+  vertical-align: middle;
+}

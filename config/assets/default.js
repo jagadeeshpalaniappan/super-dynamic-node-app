@@ -7,11 +7,16 @@ module.exports = {
         // bower:css
         'public/lib/bootstrap/dist/css/bootstrap.css',
         'public/lib/font-awesome/css/font-awesome.css',
-        'public/lib/Ionicons/css/ionicons.css'
+        'public/lib/Ionicons/css/ionicons.css',
+        'public/customplugin/css/angular-form-builder.css',
+        'public/customplugin/css/plugins/jquery-ui.css'
         // endbower
       ],
       js: [
         // bower:js
+        'public/customplugin/js/plugins/jquery.min.js',
+        'public/customplugin/js/plugins/jquery-ui.js',
+        'public/customplugin/js/plugins/bootstrap.min.js',
         'public/lib/angular/angular.js',
         'public/lib/angular-resource/angular-resource.js',
         'public/lib/angular-animate/angular-animate.js',
@@ -19,7 +24,18 @@ module.exports = {
         'public/lib/angular-ui-router/release/angular-ui-router.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-file-upload/dist/angular-file-upload.js',
-        'public/lib/owasp-password-strength-test/owasp-password-strength-test.js'
+        'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
+        'public/customplugin/js/plugins/AngularFormBuilder/angular-form-builder.js',
+        'public/customplugin/js/plugins/AngularFormBuilder/angular-form-builder-components.js',
+        'public/customplugin/js/plugins/angular-validator.min.js',
+        'public/customplugin/js/plugins/angular-validator-rules.min.js',
+        'public/customplugin/js/plugins/api-check.js',
+        'public/customplugin/js/plugins/formly.js',
+        'public/customplugin/js/plugins/angular-formly-templates-bootstrap.js',
+        'public/customplugin/js/sdfb.main.js',
+        'public/customplugin/js/sdfb-formly.config.js',
+        'public/customplugin/js/sdfb.factory.js',
+        'public/customplugin/js/sdfb.directives.js'
         // endbower
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']

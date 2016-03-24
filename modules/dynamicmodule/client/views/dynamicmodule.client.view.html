@@ -1,0 +1,236 @@
+
+<!-- Content Header (Page header) -->
+
+<section class="content-header">
+  <h1>
+    Dynamic Form
+  </h1>
+
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#">Dynamic Form</a></li>
+    <li class="active">Build</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <p>{{vm.dynamicModule}}</p>
+
+
+
+  <uib-tabset active="vm.tabSelection">
+
+
+    <uib-tab index="0" >
+      <uib-tab-heading>
+        1. Create New Module
+      </uib-tab-heading>
+
+
+      <br/>
+      <br/>
+      <br/>
+
+      <!-- form start -->
+      <form name="dynamicModuleCreateForm" ng-submit="vm.save(vm.form.articleForm.$valid)" novalidate>
+
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Create New Module</h3>
+          </div>
+
+          <div class="box-body">
+
+            <div class="form-group">
+              <label for="title" class="control-label">Module Name</label>
+
+              <div class="">
+                <input class="form-control input-lg" type="text" placeholder="You New Module Name" data-ng-model="vm.dynamicModule.moduleName" name="moduleName" id="moduleName" required>
+                <div ng-messages="dynamicModuleCreateForm.moduleName.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">Module Name is required.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <div class="pull-right">
+              <button type="button" class="btn btn-primary pull-right" ng-click="vm.tabSelection = 1" ng-disabled="dynamicModuleCreateForm.moduleName.$invalid">Next</button>
+            </div>
+          </div>
+          <!-- /.box-footer -->
+
+
+        </div>
+      </form>
+
+
+
+    </uib-tab>
+
+
+
+
+    <uib-tab index="1" disable="dynamicModuleCreateForm.moduleName.$invalid">
+      <uib-tab-heading>
+        2. Build Your Module Components
+      </uib-tab-heading>
+
+
+      <h3>
+        Form Builder
+        <small>Build you own form by 'drag & drop' form components into form builder</small>
+      </h3>
+
+      <div class="pull-right">
+        <button type="button" class="btn btn-primary pull-right" ng-click="vm.tabSelection = 2">Next</button>
+      </div>
+
+      <br/>
+      <div class="row">
+
+        <div class="col-xs-3">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Form Components</h3>
+            </div>
+
+            <div class="panel-body">
+              <div fb-components class="form-components-body"></div>
+            </div>
+
+            <div class="panel-footer text-muted text-center">
+              <p>Drag and Drop </p>
+              <p>'Form Components' into 'Form Builder' </p>
+            </div>
+
+          </div>
+
+
+
+
+        </div>
+
+        <div class="col-xs-6 col-xs-offset-1">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Form Builder</h3>
+            </div>
+
+            <div class="panel-body" style="min-height: 500px">
+              <div fb-builder="default" class="form-builder-body"></div>
+            </div>
+
+            <div class="panel-footer text-muted">
+
+              Build you own form by 'drag & drop' form components into above area
+
+            </div>
+
+          </div>
+
+
+          <pre>{{vm.formFieldsFbBuilder| json}}</pre>
+
+
+        </div>
+
+
+      </div>
+
+
+    </uib-tab>
+
+
+
+
+
+    <uib-tab index="2" disable="dynamicModuleCreateForm.moduleName.$invalid" select="vm.onClickSaveFormTab()">
+      <uib-tab-heading>
+        3. Save Module
+      </uib-tab-heading>
+
+
+      <h3>
+        Module -Preview
+        <small>Final form has been generated based on your builder input</small>
+      </h3>
+
+      <p>{{vm.dynamicModule}}</p>
+
+      <button type="button" ng-click="vm.showMyModel()">showMyModel</button>
+
+      <br/>
+
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-1">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{vm.dynamicModule.moduleName}}</h3>
+            </div>
+
+
+            <div class="panel-body" style="min-height: 500px">
+
+                <formly-form model="vm.model" fields="vm.dynamicModule.formFieldsFormly" form="vm.form1">
+                </formly-form>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <div class="col-xs-5">
+
+
+
+          <div class="row">
+
+            <div class="col-xs-1"><p class="curly-braces">}</p></div>
+            <div class="col-xs-11" style="text-align:center;line-height:100px;" >
+
+
+                <p class="text-muted">If everything looks good, Save the New Dynamic Module.</p>
+                <button type="button" class="btn btn-primary btn-lg" ng-click="vm.saveDynamicModule()" style="vertical-align: middle">Save New Module</button>
+
+
+            </div>
+
+          </div>
+
+
+
+
+
+
+        </div>
+      </div>
+
+
+
+
+
+    </uib-tab>
+
+
+
+
+
+
+
+  </uib-tabset>
+
+
+
+
+</section>
+<!-- /.content -->
+

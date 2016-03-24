@@ -1,0 +1,103 @@
+.fb-component {
+    padding: 10px;
+    cursor: move
+}
+.fb-component input {
+    cursor: move
+}
+.fb-component label {
+    cursor: move
+}
+.fb-component select {
+    cursor: move
+}
+.fb-component textarea {
+    cursor: move
+}
+.fb-form-object-editable {
+    padding: 10px
+}
+.fb-form-object-editable.fb-draggable {
+    cursor: move
+}
+.fb-form-object-editable.fb-draggable input {
+    cursor: move
+}
+.fb-form-object-editable.fb-draggable label {
+    cursor: pointer
+}
+.fb-form-object-editable.fb-draggable select {
+    cursor: move
+}
+.fb-form-object-editable.fb-draggable textarea {
+    cursor: move
+}
+.fb-form-object-editable.empty {
+    cursor: default;
+    margin: 6px;
+    height: 80px;
+    border: dashed 1px #aaa;
+    background-color: #eee
+}
+.fb-draggable.dragging {
+    background-color: #ffffff;
+    position: absolute;
+    z-index: 800;
+    -webkit-box-shadow: #666 0 0 20px;
+    -moz-box-shadow: #666 0 0 20px;
+    box-shadow: #666 0 0 20px
+}
+.fb-required:after {
+    color: #b94a48;
+    content: ' *'
+}
+.fb-builder {
+    min-height: 260px
+}
+.popover .control-label {
+    text-align: left
+}
+.popover form {
+    width: 240px
+}
+
+
+
+/*---------------------*/
+
+
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 200px;
+    height: 65px;
+    text-align: center;
+    padding-top: 25px;
+    margin: 10px;
+}
+.dragover {
+    border: 5px dashed blue;
+}
+.components-panel
+{
+    position:fixed; z-index:0;
+    right:20px;
+    padding-left: 15px;
+    width: 42%;
+}
+
+
+
+.grey-bg{
+  background-color: #f5f5f5;
+}
+.white-bg{
+  background-color: #fff;
+}
+
+pre{
+   min-height: 260px;
+   max-height: 260px;
+}
+
+
