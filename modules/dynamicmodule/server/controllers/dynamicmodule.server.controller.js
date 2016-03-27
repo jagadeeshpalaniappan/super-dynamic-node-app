@@ -9,7 +9,7 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
- * Create an article
+ * Create an dynamicModule
  */
 exports.create = function (req, res){
 
@@ -34,7 +34,7 @@ exports.create = function (req, res){
 };
 
 /**
- * Show the current article
+ * Show the current dynamicModule
  */
 exports.read = function (req, res) {
   // convert mongoose document to JSON
@@ -42,7 +42,7 @@ exports.read = function (req, res) {
 
   // Add a custom field to the DynamicModule, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the DynamicModule model.
-  //article.isCurrentUserOwner = req.user && article.user && article.user._id.toString() === req.user._id.toString() ? true : false;
+  //dynamicModule.isCurrentUserOwner = req.user && dynamicModule.user && dynamicModule.user._id.toString() === req.user._id.toString() ? true : false;
 
   res.json(dynamicModule);
 };
@@ -52,6 +52,10 @@ exports.read = function (req, res) {
  */
 exports.update = function (req, res) {
   var dynamicModule = req.dynamicModule;
+
+  dynamicModule.moduleName = req.body.moduleName;
+  dynamicModule.formFieldsFormly = req.body.formFieldsFormly;
+  dynamicModule.formFieldsFbBuilder = req.body.formFieldsFbBuilder;
 
   console.log('------dynamicModuleDATE-------');
   console.log(dynamicModule.toJSON());
@@ -68,18 +72,18 @@ exports.update = function (req, res) {
 };
 
 /**
- * Delete an article
+ * Delete an dynamicModule
  */
 exports.delete = function (req, res) {
-  var article = req.article;
+  var dynamicModule = req.dynamicModule;
 
-  article.remove(function (err) {
+  dynamicModule.remove(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(article);
+      res.json(dynamicModule);
     }
   });
 };
@@ -88,13 +92,13 @@ exports.delete = function (req, res) {
  * List of Articles
  */
 exports.list = function (req, res) {
-  DynamicModule.find().sort('-created').populate('user', 'displayName').exec(function (err, articles) {
+  DynamicModule.find().sort('-created').populate('user', 'displayName').exec(function (err, dynamicModules) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(articles);
+      res.json(dynamicModules);
     }
   });
 };

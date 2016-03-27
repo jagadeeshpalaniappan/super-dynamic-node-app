@@ -20,9 +20,7 @@ var DynamicModuleSchema = new Schema({
     trim: true,
     required: 'Module Name cannot be blank'
   },
-  formFieldsFormly: {
-    type: Object
-  },
+  formFieldsFormly: [],
   formFieldsFbBuilder: [],
   user: {
     type: Schema.ObjectId,

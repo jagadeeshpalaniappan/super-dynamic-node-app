@@ -15,6 +15,13 @@
 <section class="content">
 
 
+<div class="row">
+  <div class="col-xs-12">
+    <a ui-sref="dynamicmodule.create" class="pull-right btn btn-primary"> <i class="fa fa-plus"></i> Create New Module</a>
+  </div>
+</div>
+
+  <br/>
 
 <div class="list-group">
   <a ng-repeat="dynamicModule in vm.dynamicModules" ui-sref="dynamicmodule.view({ dynamicModuleId: dynamicModule._id })" class="list-group-item">
