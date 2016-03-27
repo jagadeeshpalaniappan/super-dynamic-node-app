@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus','JThemeUtilService','$document',
-  function ($scope, $state, Authentication, Menus, JThemeUtilService, $document) {
+angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus','JThemeUtilService','$document', 'DynamicModulesService',
+  function ($scope, $state, Authentication, Menus, JThemeUtilService, $document, DynamicModulesService) {
     // Expose view variables
     $scope.$state = $state;
     $scope.authentication = Authentication;
@@ -40,6 +40,10 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
     };
 
 
+
+
+    //Get All -Dynamic Modules
+    $scope.dynamicModules = DynamicModulesService.query();
 
 
   }

@@ -95,14 +95,17 @@
     </li>
 
 
-
-<!--
-    <li ng-class="{active: $state.includes('dynamicform')}">
-      <a ui-sref="dynamicmodule.create">
-        <i class="fa fa-home"></i> <span>Dynamic Modules</span> </i>
+    <li class="treeview" ng-repeat="dynamicModule in dynamicModules">
+      <a href ui-sref="dynamicmoduledata.view({ dynamicModuleId: dynamicModule._id })">
+        <i class="fa fa-edit"></i> <span>{{dynamicModule.moduleName}}</span>
+        <i class="fa fa-angle-left pull-right"></i>
       </a>
+      <ul class="treeview-menu">
+        <li class="active"><a href><i class="fa fa-circle-o"></i> List </a></li>
+        <li><a href ui-sref="dynamicmoduledata.view({ dynamicModuleId: dynamicModule._id })"><i class="fa fa-circle-o"></i> Create </a></li>
+      </ul>
     </li>
-    -->
+
 
   </ul>
 
