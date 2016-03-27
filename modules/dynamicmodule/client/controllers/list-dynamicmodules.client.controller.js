@@ -1,26 +1,26 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('dynamicmodule')
-    .controller('DynamicModuleListController', DynamicModuleListController);
+    angular
+        .module('dynamicmodule')
+        .controller('DynamicModuleListController', DynamicModuleListController);
 
-  DynamicModuleListController.$inject = ['DynamicModulesService'];
+    DynamicModuleListController.$inject = ['DynamicModulesService'];
 
-  function DynamicModuleListController(DynamicModulesService) {
-    var vm = this;
+    function DynamicModuleListController(DynamicModulesService) {
+        var vm = this;
 
-    vm.dynamicModules = [];
+        vm.dynamicModules = [];
 
-    //Get All
-    vm.dynamicModules = DynamicModulesService.query();
+        //Get All
+        vm.dynamicModules = DynamicModulesService.query();
 
-    //Zero Version
-    /*
-    DynamicModulesService.query().success(function(data){
-      vm.dynamicModules = data;
-    });
-    */
-    console.log(vm.dynamicModules);
-  }
+        //Zero Version
+        /*
+         DynamicModulesService.query().success(function(data){
+         vm.dynamicModules = data;
+         });
+         */
+        console.log(vm.dynamicModules);
+    }
 })();

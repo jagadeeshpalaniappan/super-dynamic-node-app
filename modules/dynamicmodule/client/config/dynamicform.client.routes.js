@@ -56,7 +56,6 @@
     }
 
 
-
     //RESOLVE-HELPER-METHODS:
 
     getDynamicModule.$inject = ['$stateParams', 'DynamicModulesService'];
@@ -72,8 +71,6 @@
     function newDynamicModule(DynamicModulesService) {
         return new DynamicModulesService();
     }
-
-
 
 
 })();

@@ -1,9 +1,7 @@
 (function () {
     'use strict';
 
-    angular
-        .module('dynamicmodule.services')
-        .factory('DynamicModulesService0', DynamicModulesService);
+    angular.module('dynamicmodule.services').factory('DynamicModulesService0', DynamicModulesService);
 
     DynamicModulesService.$inject = ['$resource', '$http'];
 
@@ -25,7 +23,7 @@
         };
 
         dynamicModulesRestApi.update = function (obj) {
-            return $http.put(urlBase + '/' + obj._id, obj)
+            return $http.put(urlBase + '/' + obj._id, obj);
         };
 
         dynamicModulesRestApi.delete = function (id) {

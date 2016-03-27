@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dynamicmodule')
-    .controller('DynamicModuleCreateController', ['$scope', 'dynamicModuleResolve', '$state', '$stateParams','DynamicModulesUtil',
+    .controller('DynamicModuleCreateController', ['$scope', 'dynamicModuleResolve', '$state', '$stateParams', 'DynamicModulesUtil',
         function MainCtrl($scope, dynamicModule, $state, $stateParams, DynamicModulesUtil) {
 
 
@@ -12,13 +12,13 @@ angular.module('dynamicmodule')
 
             vm.loadTab3 = function () {
                 vm.dynamicModule.formFieldsFormly = DynamicModulesUtil.getFormFieldsInFormlyFormat(vm.formFieldsFbBuilder["default"]);
-            }
+            };
 
             //CREATE / UPDATE -Dynamic Module
-             vm.save = function() {
+            vm.save = function () {
 
 
-                 //Commnted -since we r loading -onlick of tab-3 itself
+                //Commnted -since we r loading -onlick of tab-3 itself
                 vm.dynamicModule.formFieldsFormly = DynamicModulesUtil.getFormFieldsInFormlyFormat(vm.formFieldsFbBuilder["default"]);
                 vm.dynamicModule.formFieldsFbBuilder = vm.formFieldsFbBuilder;
 
@@ -44,10 +44,7 @@ angular.module('dynamicmodule')
                 }
 
 
-            }
-
-
-
+            };
 
 
             // Remove existing Article
@@ -55,20 +52,17 @@ angular.module('dynamicmodule')
                 if (confirm('Are you sure you want to delete?')) {
                     vm.dynamicModule.$remove($state.go('dynamicmodule.list'));
                 }
-            }
-
-
+            };
 
 
             var init = function () {
 
 
-
-                if($stateParams.dynamicModuleId){
+                if ($stateParams.dynamicModuleId) {
 
                     //View / Edit
 
-                    dynamicModule.$promise.then(function(data){
+                    dynamicModule.$promise.then(function (data) {
                         vm.dynamicModule = dynamicModule;
 
                         //FORM INITIALIZATION
@@ -81,7 +75,7 @@ angular.module('dynamicmodule')
                     });
 
 
-                }else{
+                } else {
 
                     //CREATE
                     vm.dynamicModule = dynamicModule;
@@ -94,15 +88,13 @@ angular.module('dynamicmodule')
                     DynamicModulesUtil.clearForms(vm.formFieldsFbBuilder);
 
 
-
                 }
 
 
-            }
+            };
 
 
             init();
-
 
 
         }]);
