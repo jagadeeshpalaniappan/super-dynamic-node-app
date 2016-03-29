@@ -65,7 +65,7 @@ angular.module('dynamicmodule')
 
                     //View / Edit
 
-                    console.log($stateParams.dynamicModuleId+"----"+ $stateParams.dynamicModuleDataId);
+                    //console.log($stateParams.dynamicModuleId+"----"+ $stateParams.dynamicModuleDataId);
 
                     DynamicModulesDataService.get($stateParams.dynamicModuleId, $stateParams.dynamicModuleDataId).success(function (data) {
                         vm.dynamicModuleData = data.dynamicModuleData;

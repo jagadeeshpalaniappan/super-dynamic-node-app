@@ -29,20 +29,30 @@
   <a ng-repeat="dynamicModuleData in vm.dynamicModuleDatas" ui-sref="dynamicmoduledata.view({ dynamicModuleDataId: dynamicModuleData._id })" class="list-group-item">
 
 
-    <p>Id: {{dynamicModuleData._id}}</p>
+    <!--<p>Id: {{dynamicModuleData._id}}</p>-->
 
-    <h4 class="list-group-item-heading" ><span ng-repeat="formElement in dynamicModuleData.formData"> {{::formElement}}</span></h4>
+    <div class="row">
 
+      <div class="col-xs-2 list-group-item-heading" ng-repeat="(key, value) in vm.formFieldLabels">
 
+        <span>
+          {{::value}} :
 
+          <b ng-if="!vm.isArray(dynamicModuleData.formData[key])">{{dynamicModuleData.formData[key]}} </b>
+          <b ng-if="vm.isArray(dynamicModuleData.formData[key])">
+            <span ng-repeat="arrayValues in dynamicModuleData.formData[key]"> {{arrayValues}} {{$last? '' : ','}}</span>
+          </b>
 
-    <!--<p class="list-group-item-text">{{::dynamicModuleData.formData}}</p>-->
+        </span>
 
+      </div>
+
+    </div>
 
     <p class="list-group-item-text text-muted">
-      Posted on
+      Created :
       <span ng-bind="dynamicModuleData.created | date:'mediumDate'"></span>
-      by
+       -by
       <span ng-if="dynamicModuleData.user" ng-bind="dynamicModuleData.user.displayName"></span>
       <span ng-if="!dynamicModuleData.user">Deleted User</span>
     </p>
