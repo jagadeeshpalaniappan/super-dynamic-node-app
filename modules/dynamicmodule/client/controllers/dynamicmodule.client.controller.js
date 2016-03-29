@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('dynamicmodule')
-    .controller('DynamicModuleCreateController', ['$scope', 'dynamicModuleResolve', '$state', '$stateParams', 'DynamicModulesUtil',
-        function MainCtrl($scope, dynamicModule, $state, $stateParams, DynamicModulesUtil) {
+    .controller('DynamicModuleCreateController', ['$scope', 'dynamicModuleResolve', '$state', '$stateParams', 'DynamicModulesUtil','$injector',
+        function MainCtrl($scope, dynamicModule, $state, $stateParams, DynamicModulesUtil, $injector) {
 
 
             var vm = this;
@@ -36,6 +36,8 @@ angular.module('dynamicmodule')
                     $state.go('dynamicmodule.view', {
                         dynamicModuleId: res._id
                     });
+
+                    $injector.get('$rootScope').$broadcast('refreshDynamicModules');
                 }
 
                 function errorCallback(res) {
@@ -95,6 +97,8 @@ angular.module('dynamicmodule')
 
 
             init();
+
+
 
 
         }]);
