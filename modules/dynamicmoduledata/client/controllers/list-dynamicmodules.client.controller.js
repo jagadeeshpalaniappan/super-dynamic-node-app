@@ -2,25 +2,31 @@
     'use strict';
 
     angular
-        .module('dynamicmodule')
-        .controller('DynamicModuleListController', DynamicModuleListController);
+        .module('dynamicmoduledata')
+        .controller('DynamicModuleDataListController', DynamicModuleDataListController);
 
-    DynamicModuleListController.$inject = ['DynamicModulesService'];
+    DynamicModuleDataListController.$inject = ['DynamicModulesDataService', '$stateParams'];
 
-    function DynamicModuleListController(DynamicModulesService) {
+    function DynamicModuleDataListController(DynamicModulesDataService, $stateParams) {
         var vm = this;
+        vm.isHttpResolved = false;
 
-        vm.dynamicModules = [];
+        vm.dynamicModule = {};
+        vm.dynamicModuleDatas = [];
 
         //Get All
-        vm.dynamicModules = DynamicModulesService.query();
+        //vm.dynamicModules = DynamicModulesDataService.query();
 
         //Zero Version
-        /*
-         DynamicModulesService.query().success(function(data){
-         vm.dynamicModules = data;
-         });
-         */
-        console.log(vm.dynamicModules);
+        DynamicModulesDataService.query($stateParams.dynamicModuleId).success(function(data){
+            vm.dynamicModule = data.dynamicModule;
+            vm.dynamicModuleDatas = data.dynamicModuleDatas;
+
+            //Resolved:
+            vm.isHttpResolved = true;
+        });
+
+
+        console.log(vm.dynamicModuleDatas);
     }
 })();

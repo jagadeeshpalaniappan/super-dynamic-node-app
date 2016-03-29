@@ -8,7 +8,7 @@
   <ol class="breadcrumb">
     <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
     <li><a ui-sref="dynamicmoduledata.list({dynamicModuleId: vm.dynamicModule._id})">{{::vm.dynamicModule.moduleName}} </a></li>
-    <li class="active">View</li>
+    <li class="active">Create / Edit</li>
   </ol>
 </section>
 
@@ -17,26 +17,12 @@
 
   <!--<p>{{vm.dynamicModuleData.formData}}</p>-->
 
-
   <form ng-submit="vm.save()">
     <!-- Horizontal Form -->
     <div class="box">
 
       <div class="box-header with-border">
         <h3 class="box-title">{{vm.dynamicModule.moduleName}}</h3>
-
-
-        <div class="box-tools pull-right">
-
-          <a class="btn btn-box-tool" ui-sref="dynamicmoduledata.edit({ dynamicModuleId: vm.dynamicModule._id, dynamicModuleDataId: vm.dynamicModuleData._id })" title="Edit">
-            <i class="fa fa-edit"></i>
-          </a>
-          <a class="btn btn-box-tool" ng-click="vm.remove()" title="Delete">
-            <i class="fa fa-trash"></i>
-          </a>
-
-        </div>
-
       </div>
 
       <!-- /.box-header -->
@@ -51,6 +37,14 @@
 
       </div>
       <!-- /.box-body -->
+
+      <div class="box-footer">
+        <div class="pull-right">
+          <a ui-sref="articles.list" class="btn btn-default">Cancel</a>
+          <button type="submit" class="btn btn-primary">Save</button>
+
+        </div>
+      </div>
 
     </div>
     </div>

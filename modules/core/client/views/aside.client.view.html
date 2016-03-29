@@ -95,8 +95,8 @@
     </li>
 
 
-    <li class="treeview" ng-repeat="dynamicModule in dynamicModules">
-      <a href ui-sref="dynamicmoduledata.view({ dynamicModuleId: dynamicModule._id })">
+    <li class="treeview" ng-repeat="dynamicModule in dynamicModules" ng-class="{active: $state.includes(dynamicModule._id)}">
+      <a href ui-sref="dynamicmoduledata.list({ dynamicModuleId: dynamicModule._id })">
         <i class="fa fa-edit"></i> <span>{{dynamicModule.moduleName}}</span>
         <i class="fa fa-angle-left pull-right"></i>
       </a>

@@ -11,13 +11,13 @@
         $stateProvider
             .state('dynamicmoduledata', {
                 abstract: true,
-                url: '/dynamicmoduledata',
+                url: '/dynamicmoduledata/:dynamicModuleId',
                 template: '<ui-view/>'
             })
             .state('dynamicmoduledata.list', {
                 url: '',
-                templateUrl: 'modules/dynamicmoduledata/client/views/list-dynamicmodules.client.view.html',
-                controller: 'DynamicModuleListController',
+                templateUrl: 'modules/dynamicmoduledata/client/views/list-dynamicmodulesdata.client.view.html',
+                controller: 'DynamicModuleDataListController',
                 controllerAs: 'vm'
             })
             .state('dynamicmoduledata.create', {
@@ -30,7 +30,7 @@
                 }
             })
             .state('dynamicmoduledata.edit', {
-                url: '/:dynamicModuleId/edit',
+                url: '/:dynamicModuleDataId/edit',
                 templateUrl: 'modules/dynamicmoduledata/client/views/dynamicmoduledata.client.view.html',
                 controller: 'DynamicModuleDataController',
                 controllerAs: 'vm',
@@ -42,17 +42,8 @@
                     pageTitle: 'Edit Article {{ articleResolve.title }}'
                 }
             })
-            .state('dynamicmoduledata.setupView', {
-                url: '/setup/:dynamicModuleId',
-                templateUrl: 'modules/dynamicmoduledata/client/views/setupView-dynamicmoduledata.client.view.html',
-                controller: 'DynamicModuleDataController',
-                controllerAs: 'vm',
-                resolve: {
-                    dynamicModuleResolve: getDynamicModule
-                }
-            })
             .state('dynamicmoduledata.view', {
-                url: '/:dynamicModuleId',
+                url: '/:dynamicModuleDataId',
                 templateUrl: 'modules/dynamicmoduledata/client/views/view-dynamicmoduledata.client.view.html',
                 controller: 'DynamicModuleDataController',
                 controllerAs: 'vm',
@@ -67,6 +58,29 @@
 
     //RESOLVE-HELPER-METHODS:
 
+
+    getDynamicModule.$inject = ['$stateParams', 'DynamicModulesDataService'];
+
+    function getDynamicModule($stateParams, DynamicModulesDataService) {
+        /*
+        return DynamicModulesDataService.get({
+            dynamicModuleId: $stateParams.dynamicModuleId
+        }).$promise;
+*/
+        return;
+    }
+
+    newDynamicModule.$inject = ['DynamicModulesService'];
+
+    function newDynamicModule(DynamicModulesService) {
+        //return new DynamicModulesService();
+        return;
+    }
+
+
+
+/*
+
     getDynamicModule.$inject = ['$stateParams', 'DynamicModulesService'];
 
     function getDynamicModule($stateParams, DynamicModulesService) {
@@ -80,6 +94,7 @@
     function newDynamicModule(DynamicModulesService) {
         return new DynamicModulesService();
     }
+*/
 
 
 })();

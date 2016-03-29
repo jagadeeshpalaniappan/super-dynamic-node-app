@@ -1,12 +1,15 @@
 'use strict';
 
 angular.module('dynamicmodule')
-    .controller('DynamicModuleDataController', ['$scope', 'dynamicModuleResolve', '$state', '$stateParams', 'DynamicModulesUtil',
-        function MainCtrl($scope, dynamicModule, $state, $stateParams, DynamicModulesUtil) {
+    .controller('DynamicModuleDataController', ['$scope', 'dynamicModuleResolve', '$state', '$stateParams', 'DynamicModulesUtil', 'DynamicModulesDataService','DynamicModulesService',
+        function MainCtrl($scope, dynamicModule, $state, $stateParams, DynamicModulesUtil, DynamicModulesDataService, DynamicModulesService) {
 
 
             var vm = this;
             vm.dynamicModule = {};
+            vm.dynamicModuleData = {};
+            vm.dynamicModuleData.formData = {};
+
             vm.dynamicModuleModel = {};
 
 
@@ -21,38 +24,23 @@ angular.module('dynamicmodule')
             vm.save = function () {
 
 
-                alert("save");
-
-                console.log(vm.dynamicModuleModel);
-
-/*
-
-
-                //Commnted -since we r loading -onlick of tab-3 itself
-                vm.dynamicModule.formFieldsFormly = DynamicModulesUtil.getFormFieldsInFormlyFormat(vm.formFieldsFbBuilder["default"]);
-                vm.dynamicModule.formFieldsFbBuilder = vm.formFieldsFbBuilder;
-
-
-                if (vm.dynamicModule._id) {
+                if (vm.dynamicModuleData._id) {
                     //UPDATE
-                    vm.dynamicModule.$update(successCallback, errorCallback);
+                    DynamicModulesDataService.update($stateParams.dynamicModuleId, vm.dynamicModuleData).success(successCallback).error(errorCallback);
                 } else {
                     //CREATE
-                    vm.dynamicModule.$save(successCallback, errorCallback);
+                    DynamicModulesDataService.create($stateParams.dynamicModuleId, vm.dynamicModuleData).success(successCallback).error(errorCallback);
                 }
 
 
                 function successCallback(res) {
-                    $state.go('dynamicmodule.view', {
-                        dynamicModuleId: res._id
-                    });
+                    $state.go('dynamicmoduledata.list', { dynamicModuleId: $stateParams.dynamicModuleId });
                 }
 
                 function errorCallback(res) {
                     vm.error = res.data.message;
                     console.log(res);
                 }
-*/
 
 
             };
@@ -61,7 +49,9 @@ angular.module('dynamicmodule')
             // Remove existing Article
             vm.remove = function () {
                 if (confirm('Are you sure you want to delete?')) {
-                    vm.dynamicModule.$remove($state.go('dynamicmodule.list'));
+                    DynamicModulesDataService.delete(vm.dynamicModule._id, vm.dynamicModuleData._id).success(function () {
+                        $state.go('dynamicmoduledata.list', {dynamicModuleId:vm.dynamicModule._id});
+                    });
                 }
             };
 
@@ -69,29 +59,50 @@ angular.module('dynamicmodule')
             var init = function () {
 
 
-                if ($stateParams.dynamicModuleId) {
+
+
+                if ($stateParams.dynamicModuleDataId) {
 
                     //View / Edit
 
-                    dynamicModule.$promise.then(function (data) {
-                        vm.dynamicModule = dynamicModule;
+                    console.log($stateParams.dynamicModuleId+"----"+ $stateParams.dynamicModuleDataId);
+
+                    DynamicModulesDataService.get($stateParams.dynamicModuleId, $stateParams.dynamicModuleDataId).success(function (data) {
+                        vm.dynamicModuleData = data.dynamicModuleData;
+                        vm.dynamicModule = data.dynamicModule;
 
                         //FORM INITIALIZATION
                         vm.formFieldsFbBuilder = DynamicModulesUtil.initializeFormBuilderData();
 
                         //LOADING FORM BUILDER -WITH EXISTING DATA
-                        DynamicModulesUtil.loadFormWithData(vm.dynamicModule.formFieldsFbBuilder);
+                        DynamicModulesUtil.loadFormWithData(vm.dynamicModuleData.formFieldsFbBuilder);
 
 
+                        //vm.dynamicModuleModel = {"default-textInput-5948":"jagadeesh","default-textArea-8926":"pppp"};
 
-                        //Load DynamicModule -DATA
-
-                        vm.dynamicModuleModel = {"default-textInput-5948":"jagadeesh","default-textArea-8926":"pppp"};
 
                     });
 
 
+                } else {
+
+                    //CREATE
+
+                    DynamicModulesService.get({ dynamicModuleId: $stateParams.dynamicModuleId }).$promise.then(function (data) {
+                        vm.dynamicModule = data;
+
+
+                        //FORM INITIALIZATION
+                        vm.formFieldsFbBuilder = DynamicModulesUtil.initializeFormBuilderData();
+
+
+                    });
+
+
+
                 }
+
+
 
             };
 
