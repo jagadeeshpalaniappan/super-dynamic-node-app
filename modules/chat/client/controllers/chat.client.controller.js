@@ -5,23 +5,28 @@
     .module('chat')
     .controller('ChatController', ChatController);
 
-  ChatController.$inject = ['$scope', '$state', 'Authentication', 'Socket'];
+  ChatController.$inject = ['$scope', '$state', 'Authentication', 'Socket','$rootScope'];
 
-  function ChatController($scope, $state, Authentication, Socket) {
+  function ChatController($scope, $state, Authentication, Socket, $rootScope) {
     var vm = this;
 
     vm.messages = [];
     vm.messageText = '';
     vm.sendMessage = sendMessage;
 
+    vm.currentUsername = "";
+
     init();
 
     function init() {
 
+      console.log(Authentication.user.username);
 
       // If user is not signed in then redirect back home
       if (!Authentication.user) {
         $state.go('home');
+      }else{
+        vm.currentUsername = Authentication.user.username;
       }
 
       // Make sure the Socket is connected

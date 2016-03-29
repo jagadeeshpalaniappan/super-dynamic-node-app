@@ -49,7 +49,7 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
 
     $scope.getClass = function getClass(idx, list) {
 
-      var expression = (idx+1) % 4
+      var expression = (idx+1) % 4;
       var cssClass = "";
 
       switch(expression) {
@@ -71,7 +71,7 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
 
       return cssClass;
 
-    }
+    };
 
 
     $rootScope.$on('refreshDynamicModules', function () {

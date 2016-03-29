@@ -22,9 +22,9 @@
   <div class="row">
 
 
-
+<!--
     <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
+      &lt;!&ndash; small box &ndash;&gt;
       <div class="small-box bg-yellow">
         <div class="inner">
           <h3>0</h3>
@@ -36,6 +36,7 @@
         <a href ui-sref="{{menu.items[0].items[0].state}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
+    -->
     <!-- ./col -->
 
 
@@ -44,11 +45,11 @@
       <!-- small box -->
       <div class="small-box" ng-class="getClass($index, menu.items)">
         <div class="inner">
-          <h3>0</h3>
-          <p>{{dynamicModule.moduleName}}</p>
+          <h3>{{dynamicModule.noOfDynamicModuleDatas}}</h3>
+          <p>{{dynamicModule.moduleName}}s Created</p>
         </div>
         <div class="icon">
-          <i class="ion ion-bag"></i>
+          <i class="fa fa-star-half-o"></i>
         </div>
         <a href ui-sref="dynamicmoduledata.list({ dynamicModuleId: dynamicModule._id })" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>

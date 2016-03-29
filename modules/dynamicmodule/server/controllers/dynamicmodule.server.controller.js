@@ -6,6 +6,7 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   DynamicModule = mongoose.model('DynamicModule'),
+  DynamicModuleData = mongoose.model('DynamicModuleData'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
@@ -98,7 +99,41 @@ exports.list = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(dynamicModules);
+
+
+      var dModules = [];
+      var itemsProcessed = 0;
+
+      dynamicModules.forEach(function(dModule) {
+
+
+        DynamicModuleData.count({dynamicModule: dModule._id}).exec(function (err, noOfDynamicModuleDatas) {
+          if (err) {
+            return res.status(400).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+          } else {
+
+            var ddModule = dModule.toJSON();
+            ddModule.noOfDynamicModuleDatas = noOfDynamicModuleDatas;
+            dModules.push(ddModule);
+
+
+            itemsProcessed++;
+            if(itemsProcessed === dynamicModules.length) {
+
+              //Sending final O/p
+              res.json(dModules);
+            }
+
+          }
+        });
+
+      });
+
+
+
+      //res.json(dynamicModules);
     }
   });
 };
