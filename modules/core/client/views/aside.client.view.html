@@ -95,15 +95,10 @@
     </li>
 
 
-    <li class="treeview" ng-repeat="dynamicModule in dynamicModules" ng-class="{active: $state.includes(dynamicModule._id)}">
+    <li ng-repeat="dynamicModule in dynamicModules" ng-class="{active: $state.includes(dynamicModule._id)}">
       <a href ui-sref="dynamicmoduledata.list({ dynamicModuleId: dynamicModule._id })">
-        <i class="fa fa-edit"></i> <span>{{dynamicModule.moduleName}}</span>
-        <i class="fa fa-angle-left pull-right"></i>
+        <i class="fa fa-star-half-o"></i> <span>{{dynamicModule.moduleName}}</span>
       </a>
-      <ul class="treeview-menu">
-        <li class="active"><a href><i class="fa fa-circle-o"></i> List </a></li>
-        <li><a href ui-sref="dynamicmoduledata.view({ dynamicModuleId: dynamicModule._id })"><i class="fa fa-circle-o"></i> Create </a></li>
-      </ul>
     </li>
 
 

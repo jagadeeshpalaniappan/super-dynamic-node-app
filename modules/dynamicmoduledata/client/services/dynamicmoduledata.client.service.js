@@ -27,7 +27,6 @@
         var dynamicModulesRestApi = {};
 
         dynamicModulesRestApi.query = function (dynamicModuleId) {
-            console.log(dynamicModuleId);
             return $http.get(urlBase + '/' + dynamicModuleId);
         };
 
