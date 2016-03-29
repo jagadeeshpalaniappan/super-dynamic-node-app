@@ -17,52 +17,89 @@
 <section class="content">
 
 
+  <p ng-repeat="message in vm.messages | orderBy: '-created':true">
 
-  <!-- Chat box -->
-  <div class="box box-success">
-    <div class="box-header">
+
+  </p>
+
+  <div class="row">
+
+    <div class="col-md-offset-3 col-md-6">
+
+  <!-- DIRECT CHAT PRIMARY -->
+  <div class="box box-primary direct-chat direct-chat-primary">
+    <div class="box-header with-border">
       <i class="fa fa-comments-o"></i>
-
       <h3 class="box-title">Chat</h3>
 
-      <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
-        <div class="btn-group" data-toggle="btn-toggle">
-          <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
-          </button>
-          <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
+      <!--
+      <div class="box-tools pull-right">
+        <span data-toggle="tooltip" title="3 New Messages" class="badge bg-light-blue">3</span>
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">
+          <i class="fa fa-comments"></i></button>
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+      </div>
+      -->
+
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+
+
+
+      <!-- Conversations are loaded here -->
+      <div class="direct-chat-messages">
+
+
+        <!-- Message. Default to the left -->
+        <div class="direct-chat-msg" ng-repeat="message in vm.messages | orderBy: '-created':true" ng-class="{right: vm.currentUsername === message.username}">
+
+
+
+          <div class="direct-chat-info clearfix">
+            <span class="direct-chat-name" ng-class="{'pull-right' : vm.currentUsername === message.username, 'pull-left' : vm.currentUsername !== message.username}">{{::message.username}}</span>
+            <span class="direct-chat-timestamp" ng-class="{'pull-right' : vm.currentUsername !== message.username, 'pull-left' : vm.currentUsername === message.username}"><i class="fa fa-clock-o"></i> {{message.created | date:'mediumTime'}}</span>
+          </div>
+          <!-- /.direct-chat-info -->
+
+
+
+
+
+          <img class="direct-chat-img" ng-src="{{message.profileImageURL}}" alt="{{message.username}}" ><!-- /.direct-chat-img -->
+          <div class="direct-chat-text">
+            {{::message.text}}
+          </div>
+          <!-- /.direct-chat-text -->
         </div>
-      </div>
-    </div>
-    <div class="box-body chat" id="chat-box">
-      <!-- chat item -->
-      <div class="item" ng-repeat="message in vm.messages | orderBy: '-created':true">
-        <img ng-src="{{message.profileImageURL}}" alt="{{message.username}}" class="online">
+        <!-- /.direct-chat-msg -->
 
-        <p class="message">
-          <a href="#" class="name">
-            <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{message.created | date:'mediumTime'}} </small>
-            {{::message.username}}
-          </a>
-          {{::message.text}}
-        </p>
 
-        <!-- /.attachment -->
       </div>
-      <!-- /.item -->
+      <!--/.direct-chat-messages-->
+
 
     </div>
-    <!-- /.chat -->
+    <!-- /.box-body -->
     <div class="box-footer">
+
       <form ng-submit="vm.sendMessage();">
         <div class="input-group">
           <input type="text" id="messageText" name="messageText" class="form-control" ng-model="vm.messageText" placeholder="Type message..." autocomplete="off">
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-success" ng-disabled="!vm.messageText.length"><i class="fa fa-paper-plane"></i></button>
-        </span>
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary btn-flat" ng-disabled="!vm.messageText.length">Send</button>
+          </span>
         </div>
-    </form>
+      </form>
+    </div>
+    <!-- /.box-footer-->
   </div>
-  <!-- /.box (chat box) -->
+  <!--/.direct-chat -->
+
+
+    </div>
 
   </div>
 
