@@ -1,0 +1,64 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+
+  <h1>
+    View Dynamic Module
+    <small>{{::vm.dynamicModule.moduleName}}</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+    <li><a ui-sref="dynamicmoduledata.list({dynamicModuleId: vm.dynamicModule._id})">{{::vm.dynamicModule.moduleName}} </a></li>
+    <li class="active">View</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!--<p>{{vm.dynamicModuleData.formData}}</p>-->
+
+
+  <form ng-submit="vm.save()">
+    <!-- Horizontal Form -->
+    <div class="box">
+
+      <div class="box-header with-border">
+        <h3 class="box-title">{{vm.dynamicModule.moduleName}}</h3>
+
+
+        <div class="box-tools pull-right">
+
+          <a class="btn btn-box-tool" ui-sref="dynamicmoduledata.edit({ dynamicModuleId: vm.dynamicModule._id, dynamicModuleDataId: vm.dynamicModuleData._id })" title="Edit">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a class="btn btn-box-tool" ng-click="vm.remove()" title="Delete">
+            <i class="fa fa-trash"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- /.box-header -->
+
+
+      <div class="box-body">
+
+
+        <formly-form model="vm.dynamicModuleData.formData" fields="vm.dynamicModule.formFieldsFormly" form="vm.form1">
+        </formly-form>
+
+
+      </div>
+      <!-- /.box-body -->
+
+    </div>
+    </div>
+    <!-- /.box -->
+
+
+  </form>
+
+</section>
+<!-- /.content -->
+

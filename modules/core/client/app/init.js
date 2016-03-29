@@ -12,7 +12,11 @@ angular.module(ApplicationConfiguration.applicationModuleName).config(['$locatio
   }
 ]);
 
-angular.module(ApplicationConfiguration.applicationModuleName).run(function ($rootScope, $state, Authentication) {
+angular.module(ApplicationConfiguration.applicationModuleName).run(function ($rootScope, $state, Authentication, $stateParams) {
+
+  $rootScope.$state = $state;
+  //$rootScope.$stateParams = $stateParams;
+
 
   // Check authentication before changing state
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {

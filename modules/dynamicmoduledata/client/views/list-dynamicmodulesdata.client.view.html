@@ -1,0 +1,64 @@
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    {{::vm.dynamicModule.moduleName}}
+    <small>Dynamic Module</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+    <li class="active">{{::vm.dynamicModule.moduleName}}</li>
+  </ol>
+</section>
+
+
+
+<!-- Main content -->
+<section class="content">
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <a ui-sref="dynamicmoduledata.create" class="pull-right btn btn-primary"> <i class="fa fa-plus"></i> Create New Module</a>
+  </div>
+</div>
+
+  <br/>
+
+<div class="list-group">
+  <a ng-repeat="dynamicModuleData in vm.dynamicModuleDatas" ui-sref="dynamicmoduledata.view({ dynamicModuleDataId: dynamicModuleData._id })" class="list-group-item">
+
+
+    <p>Id: {{dynamicModuleData._id}}</p>
+
+    <h4 class="list-group-item-heading" ><span ng-repeat="formElement in dynamicModuleData.formData"> {{::formElement}}</span></h4>
+
+
+
+
+    <!--<p class="list-group-item-text">{{::dynamicModuleData.formData}}</p>-->
+
+
+    <p class="list-group-item-text text-muted">
+      Posted on
+      <span ng-bind="dynamicModuleData.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="dynamicModuleData.user" ng-bind="dynamicModuleData.user.displayName"></span>
+      <span ng-if="!dynamicModuleData.user">Deleted User</span>
+    </p>
+  </a>
+</div>
+
+
+
+<div class="alert alert-warning text-center" ng-if="vm.isHttpResolved && !vm.dynamicModuleDatas.length">
+  No {{::vm.dynamicModule.moduleName}} records yet, why don't you <a ui-sref="dynamicmoduledata.create">create one</a>?
+</div>
+
+
+
+
+
+
+</section>
+<!-- /.content -->

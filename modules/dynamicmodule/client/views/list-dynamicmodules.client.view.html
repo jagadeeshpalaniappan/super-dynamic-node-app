@@ -1,0 +1,58 @@
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    <i class="fa fa-cog"></i> Dynamic Modules
+    <small>Setup</small>
+  </h1>
+
+  <ol class="breadcrumb">
+    <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+    <li class="active">Dynamic Modules</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <a ui-sref="dynamicmodule.create" class="pull-right btn btn-primary"> <i class="fa fa-plus"></i> Create New Module</a>
+  </div>
+</div>
+
+  <br/>
+
+<div class="list-group">
+  <a ng-repeat="dynamicModule in vm.dynamicModules" ui-sref="dynamicmodule.view({ dynamicModuleId: dynamicModule._id })" class="list-group-item">
+
+
+
+    <h4 class="list-group-item-heading" ng-bind="dynamicModule.moduleName"></h4>
+    <p class="list-group-item-text">No. of Form Elements {{::dynamicModule.formFieldsFormly.length}}</p>
+    <p>Id: {{dynamicModule._id}}</p>
+
+    <small class="list-group-item-text text-muted">
+      Posted on
+      <span ng-bind="dynamicModule.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="dynamicModule.user" ng-bind="dynamicModule.user.displayName"></span>
+      <span ng-if="!dynamicModule.user">Deleted User</span>
+    </small>
+  </a>
+</div>
+
+
+
+<div class="alert alert-warning text-center" ng-if="vm.dynamicModule.$resolved && !vm.dynamicModule.length">
+  No Dynamic Modules yet, why don't you <a ui-sref="dynamicmodule.create">create one</a>?
+</div>
+
+
+
+
+
+
+</section>
+<!-- /.content -->
