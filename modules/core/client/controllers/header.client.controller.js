@@ -6,6 +6,7 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
     $scope.$state = $state;
     $scope.authentication = Authentication;
 
+
     // Get the topbar menu
     $scope.menu = Menus.getMenu('topbar');
 
@@ -44,6 +45,33 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
 
     //Get All -Dynamic Modules
     $scope.dynamicModules = DynamicModulesService.query();
+
+
+    $scope.getClass = function getClass(idx, list) {
+
+      var expression = (idx+1) % 4
+      var cssClass = "";
+
+      switch(expression) {
+        case 1:
+          cssClass = "bg-aqua";
+          break;
+        case 2:
+          cssClass = "bg-green";
+          break;
+        case 3:
+          cssClass = "bg-yellow";
+          break;
+        default:
+          cssClass = "bg-red";
+      }
+
+
+      //return idx > list.length / 2 - 1;
+
+      return cssClass;
+
+    }
 
 
   }
